@@ -9,6 +9,7 @@ class HomePage extends Component {
     latitude:"",
     year:"",
     month: "",
+    crimes: []
   }
 
   grabLatAndLong = () => {
@@ -30,31 +31,40 @@ class HomePage extends Component {
         
   handleYearChange = (event)=> {this.setState ({year: event.target.value})}
 
+
   handleMonthChange = (event)=>{this.setState ({month: event.target.value})}
 
-  handleSubmit = (event) => {alert("THIS HANDLESUBMIT WILL RUN THE NEXT FETCH TO POLICE API");
+  handleSubmit = (event) => {
+
     event.preventDefault();
-}
+    fetch (`https://data.police.uk/api/outcomes-at-location?date=${this.state.year}-${this.state.month}&lat=${this.state.latitude}&lng=${this.state.longitude}`)
+        .then(res => {
+          return res.json(); 
+        })
+        .then(jsonObj => {
+          console.log(jsonObj)
+         const rawCrimesArray = jsonObj;
+        this.setState({crimes: rawCrimesArray}) 
+        cleanCrimesArray();
+        console.log(cleanCrimesArray);
+        })
+        .catch(error => {
+            console.log(error);
+        })
 
-
-  
-
-  ShowForm = () => { return ((this.state.longitude !== "")  && (this.state.latitude !== "")) ? {form} : null; }
-
- 
-
-  
+        // Also want function to take me to a new page with my list of Crimes on 
+  }
+  // ShowForm = () => { return ((this.state.longitude !== "")  && (this.state.latitude !== "")) ? {form} : null; 
 
   render() { 
     const renderLong = (this.state.longitude ==="") ? null : (<p>This is your Longitude: {this.state.longitude}</p>);
     const renderLat = (this.state.latitude ==="") ? null : (<p>This is your Latitude: {this.state.latitude} </p>);
-
-
     const form = 
-    <form onSubmit={this.handleSubmit}>
+    <form>
     <label>
       Select Month...
-      <select month={this.state.month} onChange={this.handleChange}>
+      <select month={this.state.month} onChange={this.handleMonthChange}>
+        <option defaultValue="00">Month</option>
         <option value="01">January</option>
         <option value="02">February</option>
         <option value="03">March</option>
@@ -71,14 +81,22 @@ class HomePage extends Component {
     </label>
     <label>
       Select Year...
-      <select year={this.state.year} onChange={this.handleChange}>
+      <select year={this.state.year} onChange={this.handleYearChange}>
+      <option defaultValue="0000">Year</option>
         <option value="2018">2018</option>
         <option value="2019">2019</option>
         <option value="2020">2020</option>
       </select>
     </label>
-    <input type="submit" value="Submit" />
+    <input type="submit" value="Submit" onClick={this.handleSubmit} />
   </form>
+
+    const cleanCrimesArray = this.state.crimes.map(crime => { return
+       {heading: crime.crime.category,
+        street: crime.location.street.name,
+        category: crime.category.name}
+        this.setState ({ crimes: cleanCrimesArray})
+})
 
 
     return ( 
@@ -93,7 +111,8 @@ class HomePage extends Component {
         <button onClick={this.grabLatAndLong}>Go</button>
       {renderLong}
       {renderLat}
-      {this.ShowForm()}
+      {this.state.longitude !== ""  && this.state.latitude !== "" ? form : ""}
+      {/* <CrimesList /> */}
 
   
       </section>

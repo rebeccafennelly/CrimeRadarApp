@@ -10,6 +10,7 @@ class Routes extends Component {
       <Router>
         <HomePage grabLatAndLong={this.props.grabLatAndLong} path="/"/>
         <Contact path="contact"/>
+        
 
         
       </Router>
