@@ -45,8 +45,8 @@ class HomePage extends Component {
           console.log(jsonObj)
          const rawCrimesArray = jsonObj;
         this.setState({crimes: rawCrimesArray}) 
-        cleanCrimesArray();
-        console.log(cleanCrimesArray);
+        this.cleanCrimesArray();
+        console.log(this.cleanCrimesArray);
         })
         .catch(error => {
             console.log(error);
@@ -90,15 +90,14 @@ class HomePage extends Component {
     </label>
     <input type="submit" value="Submit" onClick={this.handleSubmit} />
   </form>
+  ;
 
-    const cleanCrimesArray = this.state.crimes.map(crime => { return
-       {heading: crime.crime.category,
-        street: crime.location.street.name,
-        category: crime.category.name}
-        this.setState ({ crimes: cleanCrimesArray})
-})
-
-
+    const cleanCrimesArray = this.state.crimes.map(crime => 
+        heading: crime.crime.category
+        street: crime.location.street.name
+        category: crime.category.name
+        setState({ crimes: cleanCrimesArray})
+    )
     return ( 
       <>
       <Navbar />
@@ -113,13 +112,12 @@ class HomePage extends Component {
       {renderLat}
       {this.state.longitude !== ""  && this.state.latitude !== "" ? form : ""}
       {/* <CrimesList /> */}
-
-  
       </section>
       </>
      );
-  }
 }
+}
+
 
 
  
