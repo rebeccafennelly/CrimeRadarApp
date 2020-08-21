@@ -1,0 +1,43 @@
+.homeParent {
+  height: auto;
+  width: 100vw;
+  color: black;
+  padding: 20px;
+}
+
+.homeParent h1 {
+  font-size: 34px;
+}
+
+.homeParent span {
+  font-weight: bold;
+}
+
+.homeParent input {
+  border: solid green 2px;
+  height: 20px;
+  border-radius: 15px;
+  margin-left: 20px;
+}
+
+.homeParent input:focus {
+  background-color: lightgreen;
+  opacity: 0.5;
+  outline: none;
+}
+
+.homeParent button {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  height: 30px;
+  margin-left: 20px;
+  border-radius: 15px;
+}
+
+.longLatForm {
+  color: black;
+  border: 5px hotpink solid;
+}
+/*# sourceMappingURL=HomePage.module.css.map */

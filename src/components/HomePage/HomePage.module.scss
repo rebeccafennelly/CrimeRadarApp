@@ -1,6 +1,37 @@
 .homeParent {
   height: auto;
   width: 100vw;
-  border: 2px blue solid;
-  
+  color: black;
+  padding: 20px;
+  h1 {
+    font-size: 34px;
+  }
+  span {
+    font-weight: bold;
+  }
+  input {
+    border: solid green 2px;
+    height: 20px;
+    border-radius: 15px;
+    margin-left: 20px;
+    &:focus {
+      background-color: lightgreen;
+      opacity: 0.5;
+      outline: none;
+    }
+  }
+  button{
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    height: 30px;
+    margin-left: 20px;
+    border-radius: 15px;
+  }
+}
+
+.longLatForm {
+  color: black;
+  border:5px hotpink solid;
 }

@@ -28,13 +28,10 @@ class HomePage extends Component {
         
         })
   }
-        
-  handleYearChange = (event)=> {this.setState ({year: event.target.value})}
-
-
-  handleMonthChange = (event)=>{this.setState ({month: event.target.value})}
 
   handleSubmit = (event) => {
+
+    
 
     event.preventDefault();
     fetch (`https://data.police.uk/api/outcomes-at-location?date=${this.state.year}-${this.state.month}&lat=${this.state.latitude}&lng=${this.state.longitude}`)
@@ -42,31 +39,47 @@ class HomePage extends Component {
           return res.json(); 
         })
         .then(jsonObj => {
-          console.log(jsonObj)
-         const rawCrimesArray = jsonObj;
-        this.setState({crimes: rawCrimesArray}) 
-        this.cleanCrimesArray();
-        console.log(this.cleanCrimesArray);
+          const crimes = jsonObj
+          const cleanCrimesArray = crimes.map((crime) => {
+            return {
+              heading: crime.crime.category,
+              street: crime.crime.location.street.name,
+              category: crime.category.name
+            }
+          })
+          this.setState({ crimes: cleanCrimesArray}) 
         })
         .catch(error => {
-            console.log(error);
+          console.log(error);
         })
-
-        // Also want function to take me to a new page with my list of Crimes on 
   }
+  
+        // Also want function to take me to a new page with my list of Crimes on 
+
+
+  
+
+  handleYearChange = (event)=> {this.setState ({year: event.target.value})}
+
+
+  handleMonthChange = (event)=>{this.setState ({month: event.target.value})}
+
   // ShowForm = () => { return ((this.state.longitude !== "")  && (this.state.latitude !== "")) ? {form} : null; 
 
   render() { 
+
+
+
     const renderLong = (this.state.longitude ==="") ? null : (<p>This is your Longitude: {this.state.longitude}</p>);
     const renderLat = (this.state.latitude ==="") ? null : (<p>This is your Latitude: {this.state.latitude} </p>);
     const form = 
-    <form>
+    <form className="form">
     <label>
       Select Month...
       <select month={this.state.month} onChange={this.handleMonthChange}>
         <option defaultValue="00">Month</option>
         <option value="01">January</option>
-        <option value="02">February</option>
+        <option value="02">February</option> 
         <option value="03">March</option>
         <option value="04">April</option>
         <option value="05">May</option>
@@ -92,31 +105,35 @@ class HomePage extends Component {
   </form>
   ;
 
-    const cleanCrimesArray = this.state.crimes.map(crime => 
-        heading: crime.crime.category
-        street: crime.location.street.name
-        category: crime.category.name
-        setState({ crimes: cleanCrimesArray})
-    )
-    return ( 
-      <>
+
+
+  return ( 
+    <>
       <Navbar />
       <section className={styles.homeParent}>
-       <h1>Crime Radar</h1>
-        <p>Welcome to Crime Radar. We are here to help you keep up to date with street crime in your area.</p>
-        <p>You tell us the month and postcode in which you wish to search, and we will do all the investigating for you, within a mile radius. 
-        Let's get started! Enter your postcode here...</p>
-        <input type="text" name="postcode" placeholder="Enter your postcode..." onInput = {(event)=>this.setState({inputPostcode: event.target.value})}></input>
+        <h1>Welcome to Crime Radar.</h1>
+        <p> We are here to help you keep up to date with street crime in your area.</p>
+        <p>You tell us the month and postcode in which you wish to search, and we will do all the investigating for you within a mile radius. 
+        Let's get started! </p>
+        <span className="postcode">Enter your postcode</span>
+        <input type="text" name="postcode" onInput = {(event)=>this.setState({inputPostcode: event.target.value})}></input>
         <button onClick={this.grabLatAndLong}>Go</button>
-      {renderLong}
-      {renderLat}
-      {this.state.longitude !== ""  && this.state.latitude !== "" ? form : ""}
+        <div className="longLatForm">
+          {renderLong}
+          {renderLat}
+          {this.state.longitude !== ""  && this.state.latitude !== "" ? form : ""}
+        </div>
       {/* <CrimesList /> */}
       </section>
       </>
      );
 }
+
 }
+
+
+
+
 
 
 
