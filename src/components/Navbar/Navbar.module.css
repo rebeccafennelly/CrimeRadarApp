@@ -1,0 +1,25 @@
+.navParent {
+  width: 100vw;
+  height: 150px;
+  display: block;
+  background-color: black;
+  color: white;
+}
+
+.navParent img {
+  width: 140px;
+  height: auto;
+}
+
+a {
+  color: white;
+  font-size: 18px;
+  float: right;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  font-weight: bold;
+}
+/*# sourceMappingURL=Navbar.module.css.map */

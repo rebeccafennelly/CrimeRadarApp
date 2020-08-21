@@ -7,11 +7,12 @@ class Contact extends Component {
   render() { 
     return ( 
       <div className={styles.navParent}>
+        <img src= '../../../assets/images/radar.png' alt="logo of radar" />
         <Link to="/">
-          <div>Homepage</div>
+          <p>Homepage</p>
         </Link>
         <Link to="contact">
-          <div>Contact</div>
+          <p>Contact</p>
         </Link>
       </div>
      );

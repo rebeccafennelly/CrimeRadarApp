@@ -2,5 +2,26 @@
   width: 100vw;
   height: 150px;
   display: block;
-  border: red 2px solid;
+  background-color: black;
+  color:white;
+  img {
+    width: 140px;
+    height: auto;
+  }
 }
+
+  a {
+    color: white;
+    font-size: 18px;
+    float: right;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+      font-weight: bold;
+  }
+}
+
+
+
+
+
