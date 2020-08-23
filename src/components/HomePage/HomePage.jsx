@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar';
+import CrimesList from '../CrimesList';
 import styles from "./HomePage.module.scss"
+import { Link } from "@reach/router";
 
 class HomePage extends Component {
   state = {
@@ -9,7 +11,7 @@ class HomePage extends Component {
     latitude:"",
     year:"",
     month: "",
-    crimes: []
+    crimes: ""
   }
 
   grabLatAndLong = () => {
@@ -28,8 +30,11 @@ class HomePage extends Component {
         
         })
 
-        document.querySelector('.longLat').style.cssText = 'border: 4px green solid; border-radius: 15px; background-color: green; color: white;'
+        document.querySelector('.longLat').style.cssText = 'border: 3px black solid; border-radius: 15px; background-color: green; color: white;'
   }
+
+    
+
 
   handleSubmit = (event) => {
 
@@ -57,7 +62,7 @@ class HomePage extends Component {
           console.log(error);
         })
 
-  
+    
   }
   
         // Also want function to take me to a new page with my list of Crimes on 
@@ -73,9 +78,7 @@ class HomePage extends Component {
   // ShowForm = () => { return ((this.state.longitude !== "")  && (this.state.latitude !== "")) ? {form} : null; 
 
   render() { 
-
-
-
+ 
     const renderLong = (this.state.longitude ==="") ? null : (<li>Your longitude: {this.state.longitude}</li>);
     const renderLat = (this.state.latitude ==="") ? null : (<li> Your latitude: {this.state.latitude} </li>);
     const form = 
@@ -107,9 +110,13 @@ class HomePage extends Component {
         <option value="2020">2020</option>
       </select>
     </label>
-    <input type="submit" value="Submit" onClick={this.handleSubmit} />
+    <Link to="crimeslist">
+      <input type="submit" value="Submit" onClick={this.handleSubmit}></input>
+    </Link>
+   
   </form>
-  ;
+  
+  const navToCrimesList = (this.state.crimes === "") ? null : <CrimesList />;
 
 
 
@@ -134,7 +141,7 @@ class HomePage extends Component {
           </div>
         </article>
       </section>
-      {/* <CrimesList /> */}
+      {navToCrimesList}
    
       </>
      );

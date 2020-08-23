@@ -9,12 +9,14 @@
 .navParent img {
   width: 140px;
   height: auto;
+  display: block;
 }
 
 a {
   color: white;
   font-size: 18px;
   float: right;
+  margin-left: 15px;
   text-decoration: none;
 }
 

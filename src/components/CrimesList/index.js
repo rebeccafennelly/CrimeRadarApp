@@ -1,2 +1,2 @@
-import CrimesList from "./CrimeList";
+import CrimesList from "./CrimesList";
 export default CrimesList;
