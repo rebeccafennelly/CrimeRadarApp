@@ -3,11 +3,11 @@
   width: 100vw;
   color: black;
   padding: 20px;
-  h1 {
-    font-size: 34px;
-  }
   span {
     font-weight: bold;
+    }
+  h1 {
+    font-size: 34px;
   }
   input {
     border: solid green 2px;
@@ -20,7 +20,7 @@
       outline: none;
     }
   }
-  button{
+  @mixin blackButton {
     background-color: black;
     color: white;
     font-weight: bold;
@@ -29,9 +29,61 @@
     margin-left: 20px;
     border-radius: 15px;
   }
+  button {
+    @include blackButton
+  }
+
+  article{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    div {
+      color: black;
+      text-align: center;
+      height: 100%;
+      padding: 10px;
+      margin-top: 20px;
+      width: 40vw;
+      li {
+        font-size: 20px;
+        list-style-type: square;
+        margin:20px;
+        // list-style-image: url('../../images/radar.png');
+        // li:before {
+        // img {
+        //   width: 10%;
+        //   float: left;
+        //   margin-right: 20px;
+        //   border-radius: 10px;
+        // li:before {
+        //   content: url('../../images/radar.png');
+        // //   img {
+        //       width: 10%;
+        //    height: auto;
+      }
+    }
+
+        form {
+        padding-top: 40px;
+        font-size:22px;
+        font-weight: 700;
+        select {
+          height: 40px;
+          font-size: 20px;
+          color: green;
+          border-radius: 15px;
+          border: solid black 2px;
+          padding: 5px;
+          margin: 5px;
+        }
+        input[type="submit" i] {
+          @include blackButton;
+          margin-top: 20px;
+        }
+        }
+  }
 }
 
-.longLatForm {
-  color: black;
-  border:5px hotpink solid;
-}
+
+

@@ -27,6 +27,8 @@ class HomePage extends Component {
 
         
         })
+
+        document.querySelector('.longLat').style.cssText = 'border: 4px green solid; border-radius: 15px; background-color: green; color: white;'
   }
 
   handleSubmit = (event) => {
@@ -44,14 +46,18 @@ class HomePage extends Component {
             return {
               heading: crime.crime.category,
               street: crime.crime.location.street.name,
-              category: crime.category.name
+              category: crime.category.name,
             }
+          
           })
+          console.log(cleanCrimesArray)
           this.setState({ crimes: cleanCrimesArray}) 
         })
         .catch(error => {
           console.log(error);
         })
+
+  
   }
   
         // Also want function to take me to a new page with my list of Crimes on 
@@ -70,14 +76,14 @@ class HomePage extends Component {
 
 
 
-    const renderLong = (this.state.longitude ==="") ? null : (<p>This is your Longitude: {this.state.longitude}</p>);
-    const renderLat = (this.state.latitude ==="") ? null : (<p>This is your Latitude: {this.state.latitude} </p>);
+    const renderLong = (this.state.longitude ==="") ? null : (<li>Your longitude: {this.state.longitude}</li>);
+    const renderLat = (this.state.latitude ==="") ? null : (<li> Your latitude: {this.state.latitude} </li>);
     const form = 
     <form className="form">
     <label>
-      Select Month...
+      Select Month:
       <select month={this.state.month} onChange={this.handleMonthChange}>
-        <option defaultValue="00">Month</option>
+        <option defaultValue="00">...</option>
         <option value="01">January</option>
         <option value="02">February</option> 
         <option value="03">March</option>
@@ -93,9 +99,9 @@ class HomePage extends Component {
       </select>
     </label>
     <label>
-      Select Year...
+      Select Year:
       <select year={this.state.year} onChange={this.handleYearChange}>
-      <option defaultValue="0000">Year</option>
+      <option defaultValue="0000">...</option>
         <option value="2018">2018</option>
         <option value="2019">2019</option>
         <option value="2020">2020</option>
@@ -115,16 +121,21 @@ class HomePage extends Component {
         <p> We are here to help you keep up to date with street crime in your area.</p>
         <p>You tell us the month and postcode in which you wish to search, and we will do all the investigating for you within a mile radius. 
         Let's get started! </p>
-        <span className="postcode">Enter your postcode</span>
+        <span id="enterPostcode">Enter your postcode</span>
         <input type="text" name="postcode" onInput = {(event)=>this.setState({inputPostcode: event.target.value})}></input>
         <button onClick={this.grabLatAndLong}>Go</button>
-        <div className="longLatForm">
-          {renderLong}
-          {renderLat}
-          {this.state.longitude !== ""  && this.state.latitude !== "" ? form : ""}
-        </div>
-      {/* <CrimesList /> */}
+        <article className="flexForm">
+          <div>
+            <div className="longLat">
+              {renderLong}
+              {renderLat}
+            </div>
+            {this.state.longitude !== ""  && this.state.latitude !== "" ? form : ""}
+          </div>
+        </article>
       </section>
+      {/* <CrimesList /> */}
+   
       </>
      );
 }

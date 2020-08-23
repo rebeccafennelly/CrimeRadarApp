@@ -5,12 +5,12 @@
   padding: 20px;
 }
 
-.homeParent h1 {
-  font-size: 34px;
-}
-
 .homeParent span {
   font-weight: bold;
+}
+
+.homeParent h1 {
+  font-size: 34px;
 }
 
 .homeParent input {
@@ -36,8 +36,58 @@
   border-radius: 15px;
 }
 
-.longLatForm {
+.homeParent article {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100vw;
+}
+
+.homeParent article div {
   color: black;
-  border: 5px hotpink solid;
+  text-align: center;
+  height: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  width: 40vw;
+}
+
+.homeParent article div li {
+  font-size: 20px;
+  list-style-type: square;
+  margin: 20px;
+}
+
+.homeParent article form {
+  padding-top: 40px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.homeParent article form select {
+  height: 40px;
+  font-size: 20px;
+  color: green;
+  border-radius: 15px;
+  border: solid black 2px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.homeParent article form input[type="submit" i] {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  height: 30px;
+  margin-left: 20px;
+  border-radius: 15px;
+  margin-top: 20px;
 }
 /*# sourceMappingURL=HomePage.module.css.map */
